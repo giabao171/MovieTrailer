@@ -1,0 +1,15 @@
+.wrapper {
+    width: var(--default-sidebar-width);
+    background-color: var(--background-color-bars);
+    height: 100%;
+    position: fixed;
+    left: 0;
+    color: var(--font-color);
+}
+
+.inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}

@@ -1,0 +1,16 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 8px;
+    background: var(--search-background-color);
+    max-height: min((100vh - 96px) - 60px, 734px);
+    min-height: 100px;
+    box-shadow: rgb(0 0 0 / 12%) 0px 2px 12px;
+    border-radius: 8px;
+    overflow: hidden auto;
+}
+
+.search-title {
+    margin-left: 16px;
+}

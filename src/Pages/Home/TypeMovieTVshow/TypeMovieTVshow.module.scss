@@ -1,0 +1,49 @@
+.type-film {
+    width: 170.5px;
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+
+    &::after {
+        content: '';
+        width: 100%;
+        height: 3px;
+        background-color: var(--font-color-opa);
+        position: absolute;
+        bottom: 0;
+    }
+}
+
+.under-line {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50%;
+    height: 3px;
+    background-color: var(--primary);
+    z-index: 10;
+    transition: transform 0.1s linear 0.1s;
+}
+
+// .movie-type {
+//     border-bottom: 3px solid var(--primary);
+//     position: relative;
+//     z-index: 10;
+// }
+
+.tvshow-type {
+    // border-bottom: 3px solid var(--primary);
+    position: relative;
+    // z-index: 10;
+}
+
+.btn-type {
+    background-color: transparent !important;
+    // color: var(--font-color-opa);
+    font-weight: 400;
+    transition: color 0.1s linear 0.1s;
+
+    &:hover {
+        color: var(--primary) !important;
+    }
+}
