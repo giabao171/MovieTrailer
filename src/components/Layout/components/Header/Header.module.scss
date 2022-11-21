@@ -13,6 +13,7 @@
     --search-button-width: 50px;
     --hover-overlay: rgba(255, 255, 255, 0.1);
     --active-overlay: rgba(255, 255, 255, 0.5);
+    z-index: 9999;
 }
 
 .inner {

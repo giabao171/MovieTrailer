@@ -11,7 +11,10 @@
     --search-result-hover: rgba(68, 73, 80, 0.15);
     --primary: #2f88ff;
     --font-color: #fff;
-    --font-color-opa: rgba(204, 204, 204, 0.5);
+    --font-color-opa-hight: rgba(204, 204, 204, 0.3);
+    --font-color-opa-midle: rgba(204, 204, 204, 0.5);
+    --font-color-opa-low: rgba(204, 204, 204, 0.7);
+
     --padding-lr-page: 40px;
     --padding-tb-page: 15px;
 }
@@ -67,6 +70,7 @@ body .tippy-box {
     font-weight: 600;
     line-height: 2.2rem;
     background-color: rgba(84, 84, 87, 0.92);
+    z-index: 100000000000000000000;
 }
 
 .tippy-arrow {

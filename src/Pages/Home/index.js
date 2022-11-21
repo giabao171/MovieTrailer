@@ -4,6 +4,7 @@ import styles from './Home.module.scss';
 import TypeMovieTVshow from './TypeMovieTVshow/TypeMovieTVshow';
 import * as Genres from '~/services/Genres/GetGenres';
 import GetGenresOfMovie from '~/GetGenresOfMovie';
+import Trending from '~/components/Trending/Trending';
 
 const cx = classNames.bind(styles);
 
@@ -34,9 +35,10 @@ const Home = () => {
         <div className={cx('wrapper')}>
             {/* <TypeMovieTVshow /> */}
             {/* <button onClick={getg}>123</button> */}
-            {GetGenresOfMovie([28, 12, 878]).map((item, index) => (
+            {/* {GetGenresOfMovie([28, 12, 878]).map((item, index) => (
                 <div key={index}>{item.name}</div>
-            ))}
+            ))} */}
+            <Trending />
         </div>
     );
 };
