@@ -4,15 +4,22 @@ import styles from './Search.module.scss';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import { useDebouce } from '~/Debouce';
 import * as movieServices from '~/services/Search/SearchMovie';
+import { useNavigate } from 'react-router-dom';
+import config from '~/config';
 
 import HeadlessTippy from '@tippyjs/react/headless';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import MovieSearchItem from '~/components/MovieSearchItem/MovieSearchItem';
+import { useMovie } from '~/GlobalState/useMovie';
 
 const cx = classNames.bind(styles);
 
 const Search = () => {
+    const navigate = useNavigate();
+
+    const { mediaType } = useMovie();
+
     const [searchValue, setSearchValue] = useState('');
     const [searchResult, setSearchResult] = useState([]);
     const [showResult, setShowResult] = useState(false);
@@ -30,7 +37,7 @@ const Search = () => {
 
         const fetch = async () => {
             try {
-                const result = await movieServices.search(debounceValue);
+                const result = await movieServices.search(mediaType, debounceValue, 1);
                 setSearchResult(result.results);
                 setShowLoading(false);
             } catch (error) {
@@ -59,6 +66,18 @@ const Search = () => {
         setShowResult(false);
     };
 
+    const handleToSearch = (key) => {
+        if (key !== '') navigate(`${config.routes.home}search/${key}/1`);
+        setSearchResult([]);
+    };
+
+    const handleToSearchKey = (e, key) => {
+        if (e.keyCode === 13) {
+            if (key !== '') navigate(`${config.routes.home}search/${key}/1`);
+            setSearchResult([]);
+        }
+    };
+
     return (
         <div>
             <HeadlessTippy
@@ -83,6 +102,7 @@ const Search = () => {
                         onChange={handleChangeSearchValue}
                         placeholder="Search..."
                         spellCheck={false}
+                        onKeyDown={(e) => handleToSearchKey(e, searchValue)}
                     />
                     {!!searchValue && !showLoading && (
                         <button className={cx('clear-btn')} onClick={handleClear}>
@@ -91,7 +111,7 @@ const Search = () => {
                     )}
                     {showLoading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
 
-                    <button className={cx('search-btn')}>
+                    <button className={cx('search-btn')} onClick={() => handleToSearch(searchValue)}>
                         <FontAwesomeIcon icon={faMagnifyingGlass} />
                     </button>
                 </div>

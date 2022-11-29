@@ -9,10 +9,14 @@ import * as Trend from '~/services/Trending/GetMovieTrending';
 import { URL_IMAGE } from '~/Shared/Constants';
 import YearRelease from '../YearRelease/YearRelease';
 import GetGenresOfMovie from '~/GetGenresOfMovie';
+import { useNavigate } from 'react-router-dom';
+import config from '~/config';
 
 const cx = classNames.bind(styles);
 
 const Trending = () => {
+    const navigate = useNavigate();
+
     const [trendingList, setTrendingList] = useState([]);
     const [movie, setMovie] = useState({});
     const [nextMovie, setNextMovie] = useState({});
@@ -35,7 +39,7 @@ const Trending = () => {
         setMovie(trendingList[0]);
     }, [trendingList]);
 
-    console.log(movie);
+    // console.log(movie);
 
     let genresMovie = GetGenresOfMovie(movie?.genre_ids);
 
@@ -55,9 +59,11 @@ const Trending = () => {
                 }
             }
         }
+        // eslint-disable-next-line
     }, [movie]);
 
-    const changeVide = (type) => {
+    const changeVide = (type, e) => {
+        e?.stopPropagation();
         if (type === 'next') setMovie(nextMovie);
         if (type === 'prev') setMovie(prevMovie);
     };
@@ -70,13 +76,17 @@ const Trending = () => {
         return () => clearTimeout(autoNext);
     });
 
+    const handleToDetail = (type, id) => {
+        navigate(`${config.routes.home}${type}/detail/${id}`);
+    };
+
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('inner')}>
-                <div className={cx('button-left')} onClick={() => changeVide('prev')}>
+            <div className={cx('inner')} onClick={() => handleToDetail(movie?.media_type, movie?.id)}>
+                <div className={cx('button-left')} onClick={(event) => changeVide('prev', event)}>
                     <FontAwesomeIcon icon={faChevronLeft} />
                 </div>
-                <div className={cx('button-right')} onClick={() => changeVide('next')}>
+                <div className={cx('button-right')} onClick={(event) => changeVide('next', event)}>
                     <FontAwesomeIcon icon={faChevronRight} />
                 </div>
                 <div
@@ -92,7 +102,7 @@ const Trending = () => {
                             <div className={cx('date-release')}>
                                 <div className={cx('rating-des')}>
                                     <FontAwesomeIcon icon={faStar} className={cx('star-icon')} />
-                                    {`${movie?.vote_average}|${movie?.vote_count}`}
+                                    {`${movie?.vote_average} / ${movie?.vote_count}`}
                                 </div>
                                 <p>-</p>
                                 {(!!movie?.release_date || !!movie?.first_air_date) && (

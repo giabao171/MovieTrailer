@@ -1,4 +1,50 @@
 .wrapper {
     padding: var(--padding-tb-page) var(--padding-lr-page);
     width: 100%;
+    // background-color: #000;
 }
+
+.wrap {
+    width: 300px;
+    background-color: #fff;
+}
+
+.option {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.suggest {
+    margin-bottom: 10px;
+    color: var(--primary);
+    text-align: center;
+}
+
+// .swiper-button-next {
+//     color: green !important;
+// }
+
+.dic {
+    width: 100px;
+    height: 100px;
+    // background-color: aqua;
+}
+
+// .review-swiper-button-next {
+//     color: green;
+//     background-color: green;
+// }
+
+// .swiper-button-next {
+//     width: 10px;
+//     height: 20px;
+//     color: green;
+//     background-color: green;
+// }
+// .swiper-button-next {
+//     color: red;
+// }
+// .swiper-button-next::after {
+//     display: none;
+// }

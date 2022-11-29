@@ -1,0 +1,22 @@
+.wrapper {
+    margin: 0 10px;
+}
+
+.inner {
+    display: flex;
+}
+
+.option-btn {
+    background-color: transparent;
+    padding-bottom: 0 !important;
+    font-size: 20px;
+
+    &:hover {
+        border-bottom: 2px solid var(--primary);
+    }
+}
+
+.active {
+    border-bottom: 2px solid var(--primary);
+    color: var(--primary);
+}

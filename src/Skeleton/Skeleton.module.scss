@@ -1,0 +1,69 @@
+.wrapper {
+    width: 180px;
+    height: 250px;
+    // border: 1px solid #fff;
+    border-radius: 5px;
+    // padding: 10px 10px;
+    position: relative;
+    // overflow: hidden;
+}
+
+.wrapper::after {
+    content: '';
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 1));
+    height: 40px;
+    width: 100%;
+    border-top: 1px solid var(--primary);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    position: absolute;
+
+    bottom: 0;
+}
+
+.inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.inner::before {
+    border-radius: 5px;
+    content: '';
+    position: absolute;
+    background-color: rgb(43, 43, 43);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    // background-image: linear-gradient(to right, rgb(255, 254, 254), rgba(255, 255, 255, 0.538) 50%, rgb(255, 254, 254));
+    // animation: skeleton 2s infinite alternate;
+}
+
+.inner::after {
+    border-radius: 5px;
+    content: '';
+    position: absolute;
+    // background-color: #fff;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to right, rgb(43, 43, 43), rgba(255, 255, 255, 0.501) 50%, rgb(43, 43, 43));
+    animation: skeleton 2s infinite alternate;
+}
+
+@keyframes skeleton {
+    from {
+        left: -50%;
+    }
+    to {
+        left: 50%;
+    }
+}
