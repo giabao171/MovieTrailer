@@ -26,7 +26,7 @@ const Trending = () => {
         try {
             const getTrending = async () => {
                 const res = await Trend.getMovie();
-                setTrendingList(res.results.slice(0, 6));
+                setTrendingList(res.results.slice(0, 10));
             };
 
             getTrending();

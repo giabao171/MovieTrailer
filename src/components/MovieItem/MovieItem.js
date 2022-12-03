@@ -23,20 +23,27 @@ const MovieItem = ({ item }) => {
                     <LazyLoadImage
                         className={cx('poster-img')}
                         src={
-                            item.poster_path || item.profile_path
+                            // item.poster_path || item.profile_path
+                            //     ? `${URL_IMAGE}${item.poster_path}` || `${URL_IMAGE}${item.profile_path}`
+                            //     : `${images.noImage}`
+                            !!item.poster_path
                                 ? `${URL_IMAGE}${item.poster_path}`
+                                : !!item.profile_path
+                                ? `${URL_IMAGE}${item.profile_path}`
                                 : `${images.noImage}`
                         }
-                        // effect="blur"
+                        effect="blur"
                         // effect="opacity"
                         alt={item.title}
                     />
-                    <div className={cx('rate-box')}>
-                        <span>{item.vote_average}</span>
-                        <span className={cx('star-icon')}>
-                            <FontAwesomeIcon icon={faStar} />
-                        </span>
-                    </div>
+                    {!!item.poster_path && (
+                        <div className={cx('rate-box')}>
+                            <span>{item.vote_average}</span>
+                            <span className={cx('star-icon')}>
+                                <FontAwesomeIcon icon={faStar} />
+                            </span>
+                        </div>
+                    )}
                     <div className={cx('movie-title')}>
                         <span>{item.title || item.name}</span>
                     </div>

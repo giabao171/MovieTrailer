@@ -3,22 +3,24 @@ import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import { useDebouce } from '~/Debouce';
-import * as movieServices from '~/services/Search/SearchMovie';
+// import * as movieServices from '~/services/Search/SearchMovie';
+import * as SearchKey from '~/services/Search/SearchKeyWord';
 import { useNavigate } from 'react-router-dom';
 import config from '~/config';
 
 import HeadlessTippy from '@tippyjs/react/headless';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
-import MovieSearchItem from '~/components/MovieSearchItem/MovieSearchItem';
-import { useMovie } from '~/GlobalState/useMovie';
+// import MovieSearchItem from '~/components/MovieSearchItem/MovieSearchItem';
+// import { useMovie } from '~/GlobalState/useMovie';
+import SeachKeyWordItem from '~/components/SeachKeyWordItem/SeachKeyWordItem';
 
 const cx = classNames.bind(styles);
 
 const Search = () => {
     const navigate = useNavigate();
 
-    const { mediaType } = useMovie();
+    // const { mediaType } = useMovie();
 
     const [searchValue, setSearchValue] = useState('');
     const [searchResult, setSearchResult] = useState([]);
@@ -37,7 +39,8 @@ const Search = () => {
 
         const fetch = async () => {
             try {
-                const result = await movieServices.search(mediaType, debounceValue, 1);
+                // const result = await movieServices.search(mediaType, debounceValue, 1);
+                const result = await SearchKey.searchKeyWord(debounceValue, 1);
                 setSearchResult(result.results);
                 setShowLoading(false);
             } catch (error) {
@@ -78,6 +81,7 @@ const Search = () => {
         }
     };
 
+    // console.log(searchResult);
     return (
         <div>
             <HeadlessTippy
@@ -86,8 +90,9 @@ const Search = () => {
                 render={(attrs) => (
                     <div className={cx('search-result')}>
                         <PopperWrapper>
-                            {searchResult?.slice(0, 4).map((item, index) => (
-                                <MovieSearchItem item={item} key={index} />
+                            {searchResult?.slice(0, 7).map((item, index) => (
+                                // <MovieSearchItem item={item} key={index} />
+                                <SeachKeyWordItem item={item} key={index} />
                             ))}
                             {/* <MovieSearchItem /> */}
                         </PopperWrapper>

@@ -55,11 +55,31 @@ const GlobalState = ({ children }) => {
         },
     ];
 
+    const SEARCH_TYPE = [
+        {
+            title: 'Movie',
+            value: 'movie',
+        },
+        {
+            title: 'TV Show',
+            value: 'tv',
+        },
+        {
+            title: 'Person',
+            value: 'person',
+        },
+        {
+            title: 'All',
+            value: 'multi',
+        },
+    ];
+
     const values = {
         //list-------------------
         INTERACTION_LIST,
         OPTION_DETAIL,
         MEDIA_TYPE,
+        SEARCH_TYPE,
 
         //state-----------------
         mediaType,

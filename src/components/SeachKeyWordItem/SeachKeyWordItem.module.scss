@@ -1,0 +1,19 @@
+.wrapper {
+    width: 100% !important;
+    // height: 25px;
+}
+
+.inner {
+    width: 100% !important;
+    height: 100%;
+    padding: 6px 16px;
+    width: 200px;
+    font-size: 18px;
+    font-weight: 300;
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--search-result-hover);
+        color: var(--primary);
+    }
+}

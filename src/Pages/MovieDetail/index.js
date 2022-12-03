@@ -1,10 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './MovieDetail.module.scss';
 import { useParams } from 'react-router-dom';
 import * as Movie from '~/services/Movie/GetMovieDetail';
 import * as Media from '~/services/Media/GetMedia';
-import * as Similar from '~/services/Movie/GetMovieSimilar';
 import { URL_IMAGE } from '~/Shared/Constants';
 import { useMovie } from '~/GlobalState/useMovie';
 import Button from '~/Button/Button';
@@ -13,6 +12,7 @@ import Option from '~/Option/Option';
 import Image from '~/Image/Image';
 import images from '~/assets/images';
 import MediaItem from '~/MediaItem/MediaItem';
+import SimlarMovie from '~/SimlarMovie/SimlarMovie';
 import config from '~/config';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -28,12 +28,10 @@ const MovieDetail = () => {
     const navigate = useNavigate();
 
     const { INTERACTION_LIST, OPTION_DETAIL } = useMovie();
-    const divRef = useRef();
 
     const [details, setDetails] = useState({});
     const [media, setMedia] = useState([]);
     const [option, setOption] = useState({});
-    const [similarList, setSimilarList] = useState({});
 
     const listCasting = GetCasting(typemedia, idmovie);
 
@@ -49,6 +47,7 @@ const MovieDetail = () => {
         };
         setMedia([]);
         getDetailMovie();
+        // eslint-disable-next-line
     }, [idmovie]);
 
     useEffect(() => {
@@ -66,45 +65,37 @@ const MovieDetail = () => {
         };
 
         getMedialMovie();
+        // eslint-disable-next-line
     }, [idmovie]);
-
-    useEffect(() => {
-        const getSimilarMovie = async () => {
-            try {
-                const res = await Similar.getSimilar(typemedia, idmovie);
-                setSimilarList(res);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-
-        getSimilarMovie();
-    }, [idmovie]);
-
-    const handleToDetail = (idMovie) => {
-        navigate(`${config.routes.home}${typemedia}/detail/${idMovie}`);
-    };
 
     const handleToWatch = (idMovie) => {
-        navigate(`${config.routes.home}watch/${idMovie}`);
+        if (typemedia === 'movie') {
+            navigate(`${config.routes.home}watch/${typemedia}/${idMovie}/none/none`);
+        } else {
+            navigate(`${config.routes.home}watch/${typemedia}/${idMovie}/1/1`);
+        }
     };
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        divRef.current.scrollTo(0, 0);
+        // divRef.current.scrollTo(0, 0);
     }, [idmovie]);
 
     // console.log(media);
 
-    console.log(listCasting);
+    // console.log(listCasting);
     return (
         <div className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <Image className={cx('poter-img')} src={`${URL_IMAGE}${details.poster_path}`} alt={details.name} />
+                <LazyLoadImage
+                    className={cx('poter-img')}
+                    src={!!details.poster_path ? `${URL_IMAGE}${details.poster_path}` : `${images.noImage}`}
+                    alt={details.name}
+                />
                 <div
                     className={cx('background')}
                     style={
-                        details.backdrop_path
+                        !!details.backdrop_path
                             ? { backgroundImage: `url(${URL_IMAGE}${details.backdrop_path})` }
                             : { backgroundImage: `url(${images.noBackground})` }
                     }
@@ -118,7 +109,7 @@ const MovieDetail = () => {
                         </div>
                         <div className={cx('interaction-list')}>
                             {INTERACTION_LIST.map((item, index) => (
-                                <Button border circle key={index} className={cx('interaction-btn')}>
+                                <Button circle key={index} className={cx('interaction-btn')}>
                                     {item.icon}
                                 </Button>
                             ))}
@@ -250,35 +241,7 @@ const MovieDetail = () => {
                             )}
                         </div>
                     </div>
-                    <div className={cx('similar-part')}>
-                        <h3 className={cx('title-simi')}>You might like</h3>
-                        <div className={cx('similar-list')} ref={divRef}>
-                            {similarList.results?.slice(0, 5).map((item, index) => (
-                                <div key={index} className={cx('similar-item')} onClick={() => handleToDetail(item.id)}>
-                                    {/* <LazyLoadImage
-                                        className={cx('similar-poster')}
-                                        src={`${URL_IMAGE}${item.poster_path}`}
-                                        alt={item.title}
-                                    /> */}
-                                    <Image
-                                        className={cx('similar-poster')}
-                                        src={`${URL_IMAGE}${item.poster_path}`}
-                                        alt={item.title}
-                                    />
-                                    <div className={cx('similar-info')}>
-                                        <span>{item.title}</span>
-                                        <Button
-                                            rounded
-                                            className={cx('rate-similar')}
-                                            leftIcon={<FontAwesomeIcon icon={faStar} />}
-                                        >
-                                            {item.vote_average}
-                                        </Button>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
+                    <SimlarMovie idmovie={idmovie} typemedia={typemedia} />
                 </div>
             </div>
         </div>

@@ -3,7 +3,7 @@ const routes = {
     profile: '/profile',
     movieDetail: '/:typemedia/detail/:idmovie',
     search: 'search/:searchKey/:page',
-    watch: 'watch/:idmovie',
+    watch: 'watch/:typemedia/:idmovie/:season/:episode',
     // following: '/following',
     // upload: '/upload',
     // search: '/search/:searchvalue',
