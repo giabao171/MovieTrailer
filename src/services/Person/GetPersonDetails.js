@@ -1,14 +1,14 @@
-import * as httpRequests from '~/utils/httpRequest';
 import { API_KEY } from '~/Shared/Constants';
+import * as httpRequest from '~/utils/httpRequest';
 
-export const getGenres = async (type) => {
+export const getDetail = async (idPerson) => {
     try {
-        const res = await httpRequests.get(`/genre/${type}/list`, {
+        const res = httpRequest.get(`/person/${idPerson}?language=en-US`, {
             params: {
                 api_key: API_KEY,
             },
         });
-        return res.genres;
+        return res;
     } catch (error) {
         console.log(error);
     }

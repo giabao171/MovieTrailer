@@ -8,7 +8,7 @@ const GetGenresOfMovie = (listGenresId = []) => {
     useEffect(() => {
         const getAllGenres = async () => {
             try {
-                const res = await Genres.getGenres();
+                const res = await Genres.getGenres('movie');
                 setListAllGenres(res);
             } catch (error) {
                 console.log(error);

@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    // margin-top: 20px;
+    width: 70%;
+    // position: relative;
+    overflow: hidden;
+}
+
+.spooky {
+    width: 40px;
+    height: 50px;
+    background-color: #ccc;
+    border-radius: 45px 45px 2px 2px;
+    position: absolute;
+    animation: ani1 0.4s linear infinite;
+    animation: line 3s linear infinite;
+    // left: 400px;
+}
+
+@keyframes line {
+    from {
+        left: 10%;
+    }
+    to {
+        left: 80%;
+    }
+}
+
+.spooky::after,
+.spooky::before {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ccc;
+    // background-color: #000;
+    top: 30px;
+    left: -7px;
+    animation: ani1 0.4s linear infinite;
+}
+
+.spooky::before {
+    right: -7px;
+    left: auto;
+}
+
+@keyframes ani1 {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.left-eye {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #000;
+    top: 30%;
+    left: 20%;
+}
+
+.right-eye {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #000;
+    top: 30%;
+    right: 20%;
+}
+
+.mouth {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 11px;
+    height: 5px;
+    background-color: #000;
+    border-radius: 2px 2px 45px 45px;
+}
+
+.mouth::after,
+.mouth::before {
+    content: '';
+    position: absolute;
+    width: 7px;
+    height: 5px;
+    background-color: #ffaa9e;
+    border-radius: 50%;
+}
+
+.mouth::after {
+    right: -10px;
+    transform: rotate(-12px);
+}
+
+.mouth::before {
+    left: -10px;
+    transform: rotate(-12px);
+}
+
+.feet {
+    position: absolute;
+    bottom: 0;
+    transform: translateY(50%);
+    width: 10px;
+    height: 10px;
+    background-color: #ccc;
+    border-radius: 50%;
+    box-shadow: 10px 0 0 #ccc, 20px 0 0 #ccc, 30px 0 0 #ccc;
+}
+
+.shadow {
+    position: absolute;
+    bottom: -25px;
+}

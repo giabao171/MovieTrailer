@@ -6,7 +6,7 @@
     // min-width: 180px;
     // min-height: 250px;
     width: 180px;
-    height: 250px;
+    max-height: 250px;
     border-radius: 5px;
     position: relative;
     cursor: pointer;
@@ -15,7 +15,7 @@
 
     &:hover {
         width: 190px;
-        height: 260px;
+        max-height: 260px;
         // position: absolute;
         z-index: 100;
         transition: all 0.3s linear 0.2s;
@@ -39,7 +39,10 @@
     right: 5%;
     top: 5%;
     font-size: 12px;
-    width: 45px;
+    padding: 0 4px;
+    // min-width: 45px;
+    // max-width: 60px;
+    // max-width: 55px;
     height: 20px;
     display: flex;
     align-items: center;

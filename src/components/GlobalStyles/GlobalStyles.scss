@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto:wght@100;300;400;500;700&display=swap');
 :root {
     --font-family: 'Roboto', 'Montserrat';
-    --default-sidebar-width: 150px;
+    --default-sidebar-width: 180px;
     --default-header-height: 60px;
     --background-color-bars: #3e4042;
     --background-color: #18191a;
@@ -11,6 +11,7 @@
     --search-result-hover: rgba(68, 73, 80, 0.15);
     --primary: #2f88ff;
     --font-color: #fff;
+
     --font-color-opa-hight: rgba(204, 204, 204, 0.3);
     --font-color-opa-midle: rgba(204, 204, 204, 0.5);
     --font-color-opa-low: rgba(204, 204, 204, 0.7);

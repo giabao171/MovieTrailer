@@ -3,6 +3,8 @@ const images = {
     noImage: require('~/assets/images/noPoster.jpg'),
     noBackground: require('~/assets/images/noBackground.jpg'),
     searchNotFound: require('~/assets/images/searchNotFound.png'),
-    next: require('~/assets/images/next.png'),
+    searchDefault: require('~/assets/images/searchDefault.jpg'),
+    noFilter: require('~/assets/images/noFilter.png'),
+    footer: require('~/assets/images/footer.jpg'),
 };
 export default images;

@@ -1,12 +1,10 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 import styles from './MovieItem.module.scss';
-import Image from '~/Image/Image';
 import images from '~/assets/images';
 import { URL_IMAGE } from '~/Shared/Constants';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import config from '~/config';
 import { useNavigate } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';

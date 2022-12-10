@@ -4,7 +4,7 @@ import styles from './Search.module.scss';
 import * as SearchMovie from '~/services/Search/SearchMovie';
 import { useParams, useNavigate } from 'react-router-dom';
 import MovieItem from '~/components/MovieItem/MovieItem';
-import Paginantion from './Pagination/Pagination';
+import Pagination from '~/components/Pagination/Pagination';
 import Skeleton from '~/Skeleton/Skeleton';
 import { useMovie } from '~/GlobalState/useMovie';
 import Button from '~/Button/Button';
@@ -50,8 +50,14 @@ const Search = () => {
         return () => clearTimeout(runTime);
     }, [searchKey, page, searchType]);
 
-    const handleToDetail = (id) => {
-        navigate(`${config.routes.home}${searchType}/detail/${id}`);
+    const handleToDetail = (id, typeMedia) => {
+        if (searchType === 'person') {
+            navigate(`${config.routes.home}person/detail/${id}`);
+        } else if (searchType === 'multi') {
+            navigate(`${config.routes.home}${typeMedia}/detail/${id}`);
+        } else {
+            navigate(`${config.routes.home}${searchType}/detail/${id}`);
+        }
     };
 
     // console.log(delay);
@@ -59,26 +65,38 @@ const Search = () => {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <p className={cx('noti-search')}>
-                    Your search results for "<span>{searchKey}</span>" ({searchResult.total_results} results){' '}
-                </p>
+                {searchKey !== ' ' ? (
+                    <p className={cx('noti-search')}>
+                        Your search results for "<span>{searchKey}</span>" ({searchResult.total_results} results){' '}
+                    </p>
+                ) : (
+                    <p className={cx('noti-search', 'noti-default')}>
+                        Search every you want <Image className={cx('logo-item')} src={images.logo} alt="logo" />
+                        <span>CB Movie</span> here to help you !!!
+                    </p>
+                )}
+
                 <div className={cx('search-of-type')}>
-                    {searchResult.results?.length !== 0 ? (
-                        <div className={cx('search-result')}>
-                            {delay === false &&
-                                searchResult.results?.map((item, index) => (
-                                    <div
-                                        key={index}
-                                        className={cx('wrapper-item')}
-                                        onClick={() => handleToDetail(item.id)}
-                                    >
-                                        <MovieItem item={item} />
-                                    </div>
-                                ))}
-                            {!searchResult && new Array(20).fill('').map((_, index) => <Skeleton key={index} />)}
-                        </div>
+                    {searchKey !== ' ' ? (
+                        searchResult.results?.length !== 0 ? (
+                            <div className={cx('search-result')}>
+                                {delay === false &&
+                                    searchResult.results?.map((item, index) => (
+                                        <div
+                                            key={index}
+                                            className={cx('wrapper-item')}
+                                            onClick={() => handleToDetail(item.id, item.media_type)}
+                                        >
+                                            <MovieItem item={item} />
+                                        </div>
+                                    ))}
+                                {!searchResult && new Array(20).fill('').map((_, index) => <Skeleton key={index} />)}
+                            </div>
+                        ) : (
+                            <Image src={images.searchNotFound} alt="No result found" />
+                        )
                     ) : (
-                        <Image src={images.searchNotFound} alt="No result found" />
+                        <Image className={cx('default-img')} src={images.searchDefault} alt="Search default" />
                     )}
                     <OptionBox className={cx('option-wrapper')} title="Search type">
                         {/* <h4 className={cx('search-type-tit')}>Search type</h4> */}
@@ -96,13 +114,11 @@ const Search = () => {
                             ))}
                         </div>
                     </OptionBox>
-                    {/* <div className={cx('type-search')}>
-                        <Button onClick={() => setSearchType('tv')}>TV Show</Button>
-                        <Button onClick={() => setSearchType('movie')}>Movie</Button>
-                    </div> */}
                 </div>
             </div>
-            <Paginantion currentPage={page} endPage={searchResult.total_pages} querry={searchKey} />
+            {searchKey !== ' ' && (
+                <Pagination currentPage={page} endPage={searchResult.total_pages} querry={searchKey} />
+            )}
         </div>
     );
 };

@@ -74,12 +74,28 @@ const GlobalState = ({ children }) => {
         },
     ];
 
+    const SORT_BY = [
+        {
+            title: 'Popular',
+            value: 'popularity.desc',
+        },
+        {
+            title: 'Rating',
+            value: 'vote_average.desc',
+        },
+        {
+            title: 'Lasted',
+            value: 'release_date.desc',
+        },
+    ];
+
     const values = {
         //list-------------------
         INTERACTION_LIST,
         OPTION_DETAIL,
         MEDIA_TYPE,
         SEARCH_TYPE,
+        SORT_BY,
 
         //state-----------------
         mediaType,

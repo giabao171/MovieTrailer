@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
+import Footer from '../components/Footer';
 import classNames from 'classnames/bind';
 import styles from './DefaultLayout.module.scss';
 
@@ -14,6 +15,7 @@ const DefaultLayout = ({ children }) => {
                 <Sidebar />
                 <div className={cx('content')}>{children}</div>
             </div>
+            <Footer />
         </div>
     );
 };

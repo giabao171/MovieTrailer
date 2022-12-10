@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-const Paginantion = ({ currentPage, endPage, querry }) => {
+const Pagination = ({ currentPage, endPage, querry }) => {
     const navigate = useNavigate();
 
     const ChangePage = (page, keySearch) => {
@@ -116,4 +116,4 @@ const Paginantion = ({ currentPage, endPage, querry }) => {
     );
 };
 
-export default Paginantion;
+export default Pagination;

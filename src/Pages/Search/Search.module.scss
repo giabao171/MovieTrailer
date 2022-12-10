@@ -13,6 +13,18 @@
     }
 }
 
+.noti-default {
+    .logo-item {
+        transform: translate(0, 25%);
+        width: 28px;
+        height: 28px;
+    }
+
+    span {
+        color: var(--primary);
+    }
+}
+
 .search-result {
     display: grid;
     grid-gap: 24px 16px;
@@ -48,4 +60,11 @@
 
 .btn-active {
     background-color: var(--search-background-color);
+}
+
+.default-img {
+    width: 110%;
+    margin-right: 20px;
+    height: 460px;
+    border-radius: 12px;
 }
