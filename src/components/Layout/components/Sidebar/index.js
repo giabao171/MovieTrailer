@@ -5,6 +5,7 @@ import OptionSidebar from './OptionSidebar/OptionSidebar';
 import config from '~/config';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
+    faArrowRightFromBracket,
     faCompass,
     faHouse,
     faHouseCircleCheck,
@@ -41,6 +42,14 @@ const Sidebar = () => {
                     bIcon={<FontAwesomeIcon icon={faCompass} />}
                     sIcon={<FontAwesomeIcon icon={faCompass2} />}
                     to={config.routes.discover}
+                    option={option}
+                    setOption={setOption}
+                />
+                <OptionSidebar
+                    title={'Log in'}
+                    bIcon={<FontAwesomeIcon icon={faArrowRightFromBracket} />}
+                    sIcon={<FontAwesomeIcon icon={faArrowRightFromBracket} />}
+                    to={config.routes.signIn}
                     option={option}
                     setOption={setOption}
                 />
