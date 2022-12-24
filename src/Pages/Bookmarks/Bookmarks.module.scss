@@ -1,0 +1,46 @@
+.wrapper {
+    padding: var(--padding-tb-page) var(--padding-lr-page);
+    width: 100%;
+}
+
+.bookmark-result {
+    display: grid;
+    grid-gap: 24px 16px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    width: 100%;
+}
+
+.noti-bookmark-result {
+    margin: 20px 0;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.del-wrapper {
+    background-color: var(--search-background-color);
+    width: 200px;
+    color: var(--font-color);
+    padding: 10px 5px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    span {
+        margin-right: 3px;
+    }
+
+    &:hover {
+        color: var(--primary);
+    }
+}
+
+.no-bookmark {
+    img {
+        width: 800px;
+        border-radius: 10px;
+    }
+
+    h2 {
+        font-weight: 600;
+        color: var(--primary);
+    }
+}

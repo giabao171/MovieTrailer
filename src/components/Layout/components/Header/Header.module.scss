@@ -56,3 +56,12 @@
     height: 45px;
     border-radius: 50%;
 }
+
+.actions {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    p {
+        margin-left: 5px;
+    }
+}

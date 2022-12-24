@@ -9,6 +9,8 @@ import Search from '~/Pages/Search';
 import MovieWatch from '~/Pages/MovieWatch';
 import Discover from '~/Pages/Discover';
 import SignIn from '~/Pages/Auth/SignIn';
+import SignUp from '~/Pages/Auth/SignUp';
+import Bookmarks from '~/Pages/Bookmarks';
 
 //publict routes
 const publicRoutes = [
@@ -20,6 +22,8 @@ const publicRoutes = [
     { path: config.routes.watch, component: MovieWatch },
     { path: config.routes.discover, component: Discover },
     { path: config.routes.signIn, component: SignIn, layout: null },
+    { path: config.routes.signUp, component: SignUp, layout: null },
+    { path: config.routes.bookmarks, component: Bookmarks },
 ];
 
 const privateRoutes = [];

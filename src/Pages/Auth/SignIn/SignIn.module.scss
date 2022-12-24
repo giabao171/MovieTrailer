@@ -23,7 +23,7 @@
 }
 
 .signin-modal {
-    width: 40%;
+    width: 35%;
     // border: 1px solid #fff;
     display: flex;
     flex-direction: column;
@@ -85,6 +85,20 @@
     padding: 10px;
 }
 
+// input:-webkit-autofill,
+// input:-webkit-autofill:hover,
+// input:-webkit-autofill:focus,
+// input:-webkit-autofill:active {
+//     background-color: #333335;
+// }
+// input[data-autocompleted] {
+//     background-color: transparent;
+// }
+
+input:-webkit-autofill {
+    color: #333335 !important;
+}
+
 .input {
     // background-color: #333335 !important;
     background-color: transparent;
@@ -95,7 +109,7 @@
     caret-color: var(--primary);
 
     &:focus {
-        background-color: transparent;
+        // background-color: transparent;
         color: var(--font-color);
     }
 
@@ -138,4 +152,8 @@
             cursor: pointer;
         }
     }
+}
+
+.error {
+    color: var(--primary);
 }

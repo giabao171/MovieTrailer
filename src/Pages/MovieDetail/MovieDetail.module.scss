@@ -61,6 +61,13 @@
     }
 }
 
+.active-b {
+    background-color: var(--primary);
+    svg {
+        color: var(--font-color);
+    }
+}
+
 .rating {
     display: flex;
     height: 50px;

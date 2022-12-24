@@ -6,5 +6,6 @@ const images = {
     searchDefault: require('~/assets/images/searchDefault.jpg'),
     noFilter: require('~/assets/images/noFilter.png'),
     footer: require('~/assets/images/footer.jpg'),
+    noBookmark: require('~/assets/images/noBookmark.jpg'),
 };
 export default images;

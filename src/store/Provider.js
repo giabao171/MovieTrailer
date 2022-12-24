@@ -7,6 +7,7 @@ const HookContext = createContext();
 
 const GlobalState = ({ children }) => {
     const [mediaType, setMediaType] = useState('Movie');
+    const [currentUser, setCurrentUser] = useState(null);
 
     const INTERACTION_LIST = [
         {
@@ -100,6 +101,8 @@ const GlobalState = ({ children }) => {
         //state-----------------
         mediaType,
         setMediaType,
+        currentUser,
+        setCurrentUser,
     };
     return <HookContext.Provider value={values}>{children}</HookContext.Provider>;
 };

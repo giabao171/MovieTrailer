@@ -1,0 +1,159 @@
+.wrapper {
+    color: var(--font-color-opa-low);
+    width: 100%;
+    min-height: 100vh;
+}
+
+.inner {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 0;
+    position: relative;
+}
+
+.back-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 70px !important;
+}
+
+.signin-modal {
+    width: 35%;
+    // border: 1px solid #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    color: var(--primary);
+    font-size: 34px;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.social-account {
+    p {
+        margin-bottom: 5px;
+    }
+    margin-bottom: 10px;
+}
+
+.s-btn {
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    position: relative;
+
+    svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    &:hover {
+        background-color: var(--font-color-opa-low);
+    }
+}
+
+.face-icon {
+    color: var(--primary);
+}
+
+.form-box {
+    width: 100%;
+    p {
+        text-align: center;
+        margin-bottom: 5px;
+    }
+}
+
+.ip-box {
+    width: 100%;
+    height: 43px;
+    border-radius: 8px;
+    background-color: #333335;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+// input:-webkit-autofill,
+// input:-webkit-autofill:hover,
+// input:-webkit-autofill:focus,
+// input:-webkit-autofill:active {
+//     background-color: #333335;
+// }
+// input[data-autocompleted] {
+//     background-color: transparent;
+// }
+
+input:-webkit-autofill {
+    color: #333335 !important;
+}
+
+.input {
+    // background-color: #333335 !important;
+    background-color: transparent;
+    width: 100%;
+    margin-right: 10px;
+    font-size: 18px;
+    color: var(--font-color-opa-low);
+    caret-color: var(--primary);
+
+    &:focus {
+        // background-color: transparent;
+        color: var(--font-color);
+    }
+
+    &:not(:placeholder-shown) ~ .ip-icon {
+        color: var(--primary);
+    }
+}
+
+.ip-icon {
+    font-size: 24px;
+}
+
+.sign-in-btn {
+    width: 150px;
+    height: 40px;
+    border-radius: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--font-color);
+    background-color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px auto;
+
+    &:hover {
+        cursor: pointer;
+        opacity: 0.9;
+    }
+}
+
+.sign-up {
+    display: flex;
+
+    p {
+        color: var(--primary);
+
+        &:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+}
+
+.error {
+    color: var(--primary);
+}

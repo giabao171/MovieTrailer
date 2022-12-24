@@ -16,10 +16,13 @@ import SimlarMovie from '~/SimlarMovie/SimlarMovie';
 import config from '~/config';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsis, faHeart, faPlay, faShareNodes, faStar } from '@fortawesome/free-solid-svg-icons';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { useNavigate } from 'react-router-dom';
+import { db } from '~/firebase';
+import { arrayUnion, arrayRemove, doc, onSnapshot, updateDoc } from 'firebase/firestore';
+import Tippy from '@tippyjs/react';
 
 const cx = classNames.bind(styles);
 
@@ -27,11 +30,13 @@ const MovieDetail = () => {
     const { idmovie, typemedia } = useParams();
     const navigate = useNavigate();
 
-    const { INTERACTION_LIST, OPTION_DETAIL } = useMovie();
+    const { OPTION_DETAIL, currentUser } = useMovie();
 
     const [details, setDetails] = useState({});
     const [media, setMedia] = useState([]);
     const [option, setOption] = useState({});
+    const [isBookmarked, setIsBookmarked] = useState(false);
+    const [tryBookmarks, setTryBookmarks] = useState(false);
 
     const listCasting = GetCasting(typemedia, idmovie);
 
@@ -41,14 +46,49 @@ const MovieDetail = () => {
                 const res = await Movie.getDetail(typemedia, idmovie);
                 setDetails(res);
                 setOption('Overview');
+                // setReRender(!reRender);
             } catch (error) {
                 console.log(error);
             }
         };
         setMedia([]);
         getDetailMovie();
-        // eslint-disable-next-line
     }, [idmovie]);
+
+    useEffect(() => {
+        if (!currentUser) {
+            return;
+        }
+        onSnapshot(doc(db, 'users', currentUser?.uid), (doc) => {
+            setIsBookmarked(doc.data()?.bookmarks.some((item) => item.id === details.id));
+        });
+        // console.log(isBookmarked);
+        // console.log(tryBookmarks);
+        // eslint-disable-next-line
+    }, [idmovie, currentUser, tryBookmarks]);
+
+    const updateBookmark = async () => {
+        setTryBookmarks(!tryBookmarks);
+        await updateDoc(doc(db, 'users', currentUser?.uid), {
+            bookmarks: !isBookmarked
+                ? arrayUnion({
+                      poster_path: details?.poster_path,
+                      id: details?.id,
+                      vote_average: details?.vote_average,
+                      media_type: typemedia,
+                      ...(typemedia === 'movie' && { title: details?.title }),
+                      ...(typemedia === 'tv' && { name: details?.name }),
+                  })
+                : arrayRemove({
+                      poster_path: details?.poster_path,
+                      id: details?.id,
+                      vote_average: details?.vote_average,
+                      media_type: typemedia,
+                      ...(typemedia === 'movie' && { title: details?.title }),
+                      ...(typemedia === 'tv' && { name: details?.name }),
+                  }),
+        });
+    };
 
     useEffect(() => {
         const getMedialMovie = async () => {
@@ -74,6 +114,10 @@ const MovieDetail = () => {
         } else {
             navigate(`${config.routes.home}watch/${typemedia}/${idMovie}/1/1`);
         }
+    };
+
+    const handleToSignIn = () => {
+        navigate(`${config.routes.signIn}`);
     };
 
     useEffect(() => {
@@ -108,11 +152,27 @@ const MovieDetail = () => {
                             ))}
                         </div>
                         <div className={cx('interaction-list')}>
-                            {INTERACTION_LIST.map((item, index) => (
-                                <Button circle key={index} className={cx('interaction-btn')}>
-                                    {item.icon}
+                            <Tippy content={!!isBookmarked ? 'Added to bookmark' : 'Add to bookmark'} placement="left">
+                                <Button
+                                    circle
+                                    className={
+                                        !!isBookmarked ? cx('interaction-btn', 'active-b') : cx('interaction-btn')
+                                    }
+                                    onClick={!!currentUser ? updateBookmark : handleToSignIn}
+                                >
+                                    <FontAwesomeIcon icon={faHeart} />
                                 </Button>
-                            ))}
+                            </Tippy>
+                            <Tippy content="Share" placement="bottom">
+                                <Button circle className={cx('interaction-btn')}>
+                                    <FontAwesomeIcon icon={faShareNodes} />
+                                </Button>
+                            </Tippy>
+                            <Tippy content="More" placement="right">
+                                <Button circle className={cx('interaction-btn')}>
+                                    <FontAwesomeIcon icon={faEllipsis} />
+                                </Button>
+                            </Tippy>
                         </div>
                         <div className={cx('rating')}>
                             <div className={cx('rating-icon')}>

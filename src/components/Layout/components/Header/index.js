@@ -6,10 +6,14 @@ import images from '~/assets/images';
 import { Link } from 'react-router-dom';
 import config from '~/config';
 import Search from './Search/Search';
+import { useMovie } from '~/GlobalState/useMovie';
+import Image from '~/Image/Image';
 
 const cx = classNames.bind(styles);
 
 const Header = () => {
+    const { currentUser } = useMovie();
+    // console.log(currentUser);
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -24,11 +28,12 @@ const Header = () => {
                 </div>
                 <Search />
                 <div className={cx('actions')}>
-                    <img
-                        className={cx('avatar')}
-                        src="https://cdn.memevui.com/2021/10/29/con-meo-cuoi-mum-mim-cam-doa-hoa-hong-do-choi-tang-ban.jpg"
-                        alt="txtx"
-                    />
+                    {!!currentUser?.displayName ? (
+                        <Image className={cx('avatar')} src={currentUser.photoURL} />
+                    ) : (
+                        <Image className={cx('avatar')} src={images.noImage} />
+                    )}
+                    {!!currentUser?.displayName ? <p>{currentUser.displayName}</p> : <p>Stranger</p>}
                 </div>
             </div>
         </header>
