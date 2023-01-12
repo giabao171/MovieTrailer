@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/MovieTrailer/static/css/main.bf50a48f.css",
+    "main.js": "/MovieTrailer/static/js/main.8b2b445b.js",
+    "static/js/787.3646541d.chunk.js": "/MovieTrailer/static/js/787.3646541d.chunk.js",
+    "static/media/searchDefault.jpg": "/MovieTrailer/static/media/searchDefault.e28af2c2ddb0d2ebe15e.jpg",
+    "static/media/noBookmark.jpg": "/MovieTrailer/static/media/noBookmark.b2f98e3ac3ffbd8f9cb6.jpg",
+    "static/media/noBackground.jpg": "/MovieTrailer/static/media/noBackground.f959017d8389cd37434a.jpg",
+    "static/media/searchNotFound.png": "/MovieTrailer/static/media/searchNotFound.884dd8fa746b70634d0d.png",
+    "static/media/noFilter.png": "/MovieTrailer/static/media/noFilter.6f2702269a1156a11e95.png",
+    "static/media/footer.jpg": "/MovieTrailer/static/media/footer.d41c146add7bfa8e68a4.jpg",
+    "static/media/logo.svg": "/MovieTrailer/static/media/logo.aaa3cca62efa58dca8cef16dcb009aa8.svg",
+    "index.html": "/MovieTrailer/index.html",
+    "main.bf50a48f.css.map": "/MovieTrailer/static/css/main.bf50a48f.css.map",
+    "main.8b2b445b.js.map": "/MovieTrailer/static/js/main.8b2b445b.js.map",
+    "787.3646541d.chunk.js.map": "/MovieTrailer/static/js/787.3646541d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bf50a48f.css",
+    "static/js/main.8b2b445b.js"
+  ]
+}
