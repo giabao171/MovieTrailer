@@ -32,6 +32,9 @@ const MovieDetail = () => {
 
     const { OPTION_DETAIL, currentUser } = useMovie();
 
+    const a = { a: 1, b: 2 };
+    console.log(Object.keys(a));
+
     const [details, setDetails] = useState({});
     const [media, setMedia] = useState([]);
     const [option, setOption] = useState({});
@@ -65,7 +68,7 @@ const MovieDetail = () => {
         // console.log(isBookmarked);
         // console.log(tryBookmarks);
         // eslint-disable-next-line
-    }, [idmovie, currentUser, tryBookmarks]);
+    }, [tryBookmarks, details]);
 
     const updateBookmark = async () => {
         setTryBookmarks(!tryBookmarks);

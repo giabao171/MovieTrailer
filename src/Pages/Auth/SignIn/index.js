@@ -72,11 +72,14 @@ const SignIn = () => {
             // console.log(user.user);
             if (!!user) {
                 setCurrentUser(user.user);
-                navigate(`${config.routes.home}`);
+                // console.log(user.user);
+                // navigate(`${config.routes.home}`);
             } else {
                 setError('Something Wrong');
+                // console.log(user);
             }
         } catch (error) {
+            // setError('Something Wrong');
             console.log(error);
         }
     };
